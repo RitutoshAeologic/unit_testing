@@ -91,12 +91,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         CommonUtils.showSnackBar(context, 'Password not match');
                         return;
                       }
-                      CommonUtils.validateConfirmPassword;
-                      CommonUtils.isValidateEmail;
-                      CommonUtils.validateAndSignUp;
-                        Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const WelcomePage(),));
+                      if (_formKey.currentState!.validate() && cPasswordTextController.text == passwordTextController.text)
+                        {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const WelcomePage(),));
+                        }
+
                     },
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(

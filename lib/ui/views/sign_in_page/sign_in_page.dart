@@ -94,9 +94,7 @@ class _SignInPageState extends State<SignInPage> {
                     child: MaterialButton(
                       color: AppColors.appBarColor,
                       onPressed: () async {
-                        _formKey.currentState?.validate();
-                        _formKey.currentState?.save();
-                        if(CommonUtils.validateAndSignIn == true){
+                        if(_formKey.currentState!.validate()){
                           Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => const WelcomePage(),));
