@@ -7,6 +7,7 @@ import 'package:unit_testing/ui/widgets/text_button_widget.dart';
 import '../../../core/constant/color_constant.dart';
 import '../../../core/constant/font_constant.dart';
 import '../../../core/constant/icon_constant.dart';
+import '../../../core/constant/route_constant.dart';
 import '../sign_up_page/sign_up_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -99,19 +100,16 @@ class _HomePageState extends State<HomePage> {
                           ]),
                       child: MaterialButton(
                         //color: AppColors.appBarColor,
-                        onPressed: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpPage(),
-                            ),
-                          );
-                        },
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                                 Radius.circular(20.0))),
                         child: const Text(AppStrings.signUpText,
                           style: TextStyle(color: AppColors.white,fontSize: 22,fontStyle: FontStyle.italic),
                         ),
+                        onPressed: (){
+                          Navigator.pushNamed(context,
+                              Routes.signUpScreen);
+                        },
                       ),
                     ),
                   ),
@@ -126,19 +124,17 @@ class _HomePageState extends State<HomePage> {
                       height: MediaQuery.of(context).size.height*0.08,
                       child: MaterialButton(
                         color: AppColors.appBarColor,
-                        onPressed: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SignInPage(),
-                            ),
-                          );
-                        },
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                                 Radius.circular(20.0))),
                         child: const Text(AppStrings.signInText,
                           style: TextStyle(color: AppColors.white),
                         ),
+                        onPressed: (){
+                          Navigator.pushNamed(context,
+                              Routes.signInScreen);
+                        },
+
                       ),
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constant/color_constant.dart';
 import '../../../core/constant/font_constant.dart';
+import '../../../core/constant/route_constant.dart';
 import '../home_page/home_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -35,20 +36,16 @@ class WelcomePage extends StatelessWidget {
                 )
               ]),
           child: MaterialButton(
-            //color: AppColors.appBarColor,
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
-            },
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                     Radius.circular(20.0))),
             child: const Text(AppStrings.homePage,
               style: TextStyle(color: AppColors.white,fontSize: 22,fontStyle: FontStyle.italic),
             ),
+            onPressed: (){
+              Navigator.pushNamed(context,
+                  Routes.homeScreen);
+            }
           ),
         ),
       ),

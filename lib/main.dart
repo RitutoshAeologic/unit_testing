@@ -3,6 +3,8 @@ import 'package:unit_testing/ui/views/home_page/home_page.dart';
 import 'package:unit_testing/ui/views/sign_in_page/sign_in_page.dart';
 
 import 'core/constant/firebase_auth_constants.dart';
+import 'core/constant/route_constant.dart';
+import 'core/routing/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
+      onGenerateRoute: RouterApp.generateRoute,
+      initialRoute: Routes.homeScreen,
     );
   }
 }

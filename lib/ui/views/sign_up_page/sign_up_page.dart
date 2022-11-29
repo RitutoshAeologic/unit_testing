@@ -5,6 +5,7 @@ import 'package:unit_testing/ui/views/welcome_page/welcome_page.dart';
 import '../../../core/constant/color_constant.dart';
 import '../../../core/constant/font_constant.dart';
 import '../../../core/constant/icon_constant.dart';
+import '../../../core/constant/route_constant.dart';
 import '../../../core/utils/common_utils.dart';
 import '../../widgets/get_text_field.dart';
 import '../sign_in_page/sign_in_page.dart';
@@ -87,17 +88,22 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: AppColors.appBarColor,
                     onPressed: () async {
                       _formKey.currentState?.validate();
-                      if (cPasswordTextController.text != passwordTextController.text) {
+                      if (_formKey.currentState!.validate() && cPasswordTextController.text != passwordTextController.text) {
                         CommonUtils.showSnackBar(context, 'Password not match');
                         return;
                       }
-                      if (_formKey.currentState!.validate() && cPasswordTextController.text == passwordTextController.text)
+                      if (_formKey.currentState!.validate() && cPasswordTextController.text == CommonUtils.validateConfirmPassword)
                         {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const WelcomePage(),));
+                          Navigator.pushNamed(context,
+                              Routes.welcomeScreen);
                         }
-
+                      if(emailTextController.text.isEmpty && cPasswordTextController.text.isEmpty && passwordTextController.text.isEmpty)
+                        {
+                          CommonUtils.showSnackBar(context, 'Enter all details');
+                        }
+                      else {
+                        CommonUtils.showSnackBar(context, 'Enter valid email9');
+                      }
                     },
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(

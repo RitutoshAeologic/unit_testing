@@ -5,6 +5,7 @@ import 'package:unit_testing/ui/views/welcome_page/welcome_page.dart';
 import '../../../core/constant/color_constant.dart';
 import '../../../core/constant/font_constant.dart';
 import '../../../core/constant/icon_constant.dart';
+import '../../../core/constant/route_constant.dart';
 import '../../../core/utils/common_utils.dart';
 import '../../widgets/get_text_field.dart';
 import '../sign_up_page/sign_up_page.dart';
@@ -29,7 +30,6 @@ class _SignInPageState extends State<SignInPage> {
         behavior: HitTestBehavior.opaque,
           onTap: () {
             FocusScopeNode currentFocus = FocusScope.of(context);
-
             if (!currentFocus.hasPrimaryFocus &&
                 currentFocus.focusedChild != null) {
               FocusManager.instance.primaryFocus?.unfocus();
@@ -40,7 +40,6 @@ class _SignInPageState extends State<SignInPage> {
           title: const Text(AppStrings.signInPageText),
           backgroundColor: AppColors.appBarColor,
           centerTitle: true
-
         ),
         body: SingleChildScrollView(
           child: Form(
@@ -48,7 +47,6 @@ class _SignInPageState extends State<SignInPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 34.0),
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 50),
@@ -61,28 +59,29 @@ class _SignInPageState extends State<SignInPage> {
                       style: TextStyle(color: AppColors.appBarColor)),
                   const SizedBox(height: 20),
                   GetTextField(
-                      controller: emailTextController,
-                      hint: AutofillHints.email,
-                      obscure: false,
+                    controller: emailTextController,
+                    hint: AutofillHints.email,
+                    obscure: false,
                     inputType: TextInputType.emailAddress,
-                      onValidate: CommonUtils.isValidateEmail,
+                    onValidate: CommonUtils.isValidateEmail,
                   ),
                   const SizedBox(height: 20),
                   const Text(AppStrings.passwordText,
                       style: TextStyle(color: AppColors.appBarColor)),
                   const SizedBox(height: 20),
                   GetTextField(
-                      controller: passwordTextController,
-                      hint: AutofillHints.password,
-                      obscure: true,
+                    controller: passwordTextController,
+                    hint: AutofillHints.password,
+                    obscure: true,
                     isVisible: true,
                     onValidate: CommonUtils.isPasswordValid,
                     ),
-                  //const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(onPressed: (){},
+                      TextButton(onPressed: (){
+                        Navigator.pushNamed(context, Routes.noInternetScreen);
+                      },
                           child: const Text(AppStrings.forgetPasswordText,
                           style: TextStyle(color: AppColors.appBarColor),)
                       ),
@@ -95,11 +94,8 @@ class _SignInPageState extends State<SignInPage> {
                       color: AppColors.appBarColor,
                       onPressed: () async {
                         if(_formKey.currentState!.validate()){
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const WelcomePage(),));
+                         Navigator.pushNamed(context, Routes.signInScreen);
                         }
-
                       },
                       shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
@@ -114,11 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       const Text(AppStrings.doNotHaveAccountText),
                       TextButton(onPressed: (){
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpPage(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, Routes.signUpScreen);
                       },
                           child: const Text(AppStrings.signUpText,
                             style: TextStyle(color: AppColors.signUpColor),)
